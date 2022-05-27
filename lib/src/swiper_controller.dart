@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class SwiperController extends IndexController {
@@ -21,21 +23,19 @@ class SwiperController extends IndexController {
   // this value is PageViewController.pos
   double pos;
 
-  int index;
-  bool animation;
   bool autoplay;
 
   SwiperController();
 
   void startAutoplay() {
     event = SwiperController.START_AUTOPLAY;
-    this.autoplay = true;
+    autoplay = true;
     notifyListeners();
   }
 
   void stopAutoplay() {
     event = SwiperController.STOP_AUTOPLAY;
-    this.autoplay = false;
+    autoplay = false;
     notifyListeners();
   }
 }

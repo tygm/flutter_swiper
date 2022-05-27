@@ -23,17 +23,17 @@ class SwiperControl extends SwiperPlugin {
   final Key key;
 
   const SwiperControl(
-      {this.iconPrevious: Icons.arrow_back_ios,
-      this.iconNext: Icons.arrow_forward_ios,
+      {this.iconPrevious = Icons.arrow_back_ios,
+      this.iconNext = Icons.arrow_forward_ios,
       this.color,
       this.disableColor,
       this.key,
-      this.size: 30.0,
-      this.padding: const EdgeInsets.all(5.0)});
+      this.size = 30.0,
+      this.padding = const EdgeInsets.all(5.0)});
 
   Widget buildButton(SwiperPluginConfig config, Color color, IconData iconDaga,
       int quarterTurns, bool previous) {
-    return new GestureDetector(
+    return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
         if (previous) {
@@ -94,10 +94,10 @@ class SwiperControl extends SwiperPlugin {
       );
     }
 
-    return new Container(
+    return SizedBox(
       height: double.infinity,
-      child: child,
       width: double.infinity,
+      child: child,
     );
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -14,27 +16,27 @@ class IndexController extends ChangeNotifier {
   bool animation;
   int event;
 
-  Future move(int index, {bool animation: true}) {
+  Future move(int index, {bool animation = true}) {
     this.animation = animation ?? true;
     this.index = index;
-    this.event = MOVE;
-    _completer = new Completer();
+    event = MOVE;
+    _completer = Completer();
     notifyListeners();
     return _completer.future;
   }
 
-  Future next({bool animation: true}) {
-    this.event = NEXT;
+  Future next({bool animation = true}) {
+    event = NEXT;
     this.animation = animation ?? true;
-    _completer = new Completer();
+    _completer = Completer();
     notifyListeners();
     return _completer.future;
   }
 
-  Future previous({bool animation: true}) {
-    this.event = PREVIOUS;
+  Future previous({bool animation = true}) {
+    event = PREVIOUS;
     this.animation = animation ?? true;
-    _completer = new Completer();
+    _completer = Completer();
     notifyListeners();
     return _completer.future;
   }

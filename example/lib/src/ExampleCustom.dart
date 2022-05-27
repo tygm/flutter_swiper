@@ -153,13 +153,13 @@ class _ExampleCustomState extends State<ExampleCustom> {
           new Text("Index:$_currentIndex"),
           new Row(
             children: <Widget>[
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   _controller.previous(animation: true);
                 },
                 child: new Text("Prev"),
               ),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   _controller.next(animation: true);
                 },
@@ -169,7 +169,7 @@ class _ExampleCustomState extends State<ExampleCustom> {
                   child: new TextField(
                 controller: numberController,
               )),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: () {
                   var text = numberController.text;
                   setState(() {

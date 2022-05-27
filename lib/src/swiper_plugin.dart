@@ -25,8 +25,8 @@ class SwiperPluginConfig {
       this.itemCount,
       this.indicatorLayout,
       this.outer,
-      this.scrollDirection,
-      this.controller,
+      @required this.scrollDirection,
+      @required this.controller,
       this.pageController,
       this.layout,
       this.loop})
@@ -38,7 +38,7 @@ class SwiperPluginView extends StatelessWidget {
   final SwiperPlugin plugin;
   final SwiperPluginConfig config;
 
-  const SwiperPluginView(this.plugin, this.config);
+   const SwiperPluginView(this.plugin, this.config, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
