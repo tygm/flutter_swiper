@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
         '/example07': (BuildContext context) => new ScaffoldWidget(
               child: new ExampleCustom(),
               title: "Custom All",
-            )
+            ),
+        '/example08': (BuildContext context) => new ExampleRect(),
       },
     );
   }
@@ -88,7 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ["Custom Pagination", "Custom Pagination", "/example04"],
           ["Phone", "Phone view", "/example05"],
           ["ScrollView ", "In a ScrollView", "/example06"],
-          ["Custom", "Custom all properties", "/example07"]
+          ["Custom", "Custom all properties", "/example07"],
+          ["Rect", "Rect style", "/example08"]
         ]),
       ),
     );
@@ -186,6 +188,50 @@ class ExampleFraction extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   builder: SwiperPagination.fraction),
             ))
+          ],
+        ));
+  }
+}
+
+
+class ExampleRect extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: new AppBar(
+          title: Text("ExampleFraction"),
+        ),
+        body: new Column(
+          children: <Widget>[
+            Expanded(
+                child: new Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return new Image.asset(
+                      images[index],
+                      fit: BoxFit.fill,
+                    );
+                  },
+                  autoplay: true,
+                  itemCount: images.length,
+                  pagination:
+                  new SwiperPagination(builder: SwiperPagination.rect),
+                  control: new SwiperControl(),
+                )),
+            Expanded(
+                child: new Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return new Image.asset(
+                      images[index],
+                      fit: BoxFit.fill,
+                    );
+                  },
+                  autoplay: true,
+                  itemCount: images.length,
+                  scrollDirection: Axis.vertical,
+                  pagination: new SwiperPagination(
+                      alignment: Alignment.centerRight,
+                      builder: SwiperPagination.rect),
+                ))
           ],
         ));
   }
