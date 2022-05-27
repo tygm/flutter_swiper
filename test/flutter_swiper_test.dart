@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 void main() {
   testWidgets('Default Swiper', (WidgetTester tester) async {

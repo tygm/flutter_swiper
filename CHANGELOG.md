@@ -1,3 +1,14 @@
+## [1.1.8] - [2022/05/27]
+
+    * fix example error
+    * fix SwiperPagination.rect indicator does not display
+    * support null safety
+    * support Flutter 3
+
+## [1.1.7] - [2022/05/27]
+
+    * test publish to pub.dev
+
 
 ## [1.1.5] - [2019/03/10]
 

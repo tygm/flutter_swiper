@@ -1,36 +1,32 @@
 ![Logo](banner.jpg)
 
 <p align="center">
-    <a href="https://travis-ci.org/best-flutter/flutter_swiper">
-        <img src="https://travis-ci.org/best-flutter/flutter_swiper.svg?branch=master" alt="Build Status" />
+    <a href="https://travis-ci.org/feicien/flutter_swiper_view">
+        <img src="https://travis-ci.org/feicien/flutter_swiper_view.svg?branch=master" alt="Build Status" />
     </a>
-    <a href="https://coveralls.io/github/best-flutter/flutter_swiper?branch=master">
-        <img src="https://coveralls.io/repos/github/best-flutter/flutter_swiper/badge.svg?branch=master" alt="Coverage Status" />
+    <a href="https://coveralls.io/github/feicien/flutter_swiper_view?branch=master">
+        <img src="https://coveralls.io/repos/github/feicien/flutter_swiper_view/badge.svg?branch=master" alt="Coverage Status" />
     </a>
-    <a href="https://github.com/jzoom/flutter_swiper/pulls">
+    <a href="https://github.com/feicien/flutter_swiper_view/pulls">
         <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg" alt="PRs Welcome" />
     </a>
     <a href="https://pub.dartlang.org/packages/flutter_swiper">
         <img src="https://img.shields.io/pub/v/flutter_swiper.svg" alt="pub package" />
     </a>
-    <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=a71a2504cda4cc9ace3320f2dc588bdae928abc671e903463caeb71ec9302c2c"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="best-flutter" title="best-flutter"></a>
 </p>
 <p align="center">
-    <a href="https://github.com/jzoom/flutter_swiper/blob/master/README-ZH.md">
+    <a href="https://github.com/feicien/flutter_swiper_view/blob/master/README-ZH.md">
         <b>中文说明</b>
     </a>
 </p>
 
 
 
-# flutter_swiper
+# flutter_swiper_view
 
 The best swiper for flutter , with multiple layouts, infinite loop. Compatible with Android & iOS.
 
 
-# :sparkles::sparkles: New Features:Layout for pagination.
-
-We are using this project [flutter_page_indicator](https://github.com/best-flutter/flutter_page_indicator) now .
 
 # :sparkles::sparkles: New Features:PageTransformer
 
@@ -38,7 +34,6 @@ Finally, we have `PageTransformer` like android, just set a `transformer` to `Sw
 it returns a widget that has been transformed. For now, only support for layout `DEFAULT`.
 Thanks to @FlutterRocks ,you've done great job 👏.
 
-We are using this project [transformer_page_view](https://github.com/best-flutter/transformer_page_view) now .
 
 
 # :sparkles::sparkles: New Features:Layout
@@ -55,27 +50,24 @@ We are using this project [transformer_page_view](https://github.com/best-flutte
 
 # Showcases
 
-![Horizontal](https://github.com/jzoom/flutter_swiper/raw/master/example/res/1.gif)
+![Horizontal](https://github.com/feicien/flutter_swiper_view/raw/master/example/res/1.gif)
 
-![Vertical](https://github.com/jzoom/flutter_swiper/raw/master/example/res/2.gif)
+![Vertical](https://github.com/feicien/flutter_swiper_view/raw/master/example/res/2.gif)
 
-![Custom Pagination](https://github.com/jzoom/flutter_swiper/raw/master/example/res/3.gif)
+![Custom Pagination](https://github.com/feicien/flutter_swiper_view/raw/master/example/res/3.gif)
 
-![Custom Pagination](https://github.com/jzoom/flutter_swiper/raw/master/example/res/4.gif)
+![Custom Pagination](https://github.com/feicien/flutter_swiper_view/raw/master/example/res/4.gif)
 
-![Phone](https://github.com/jzoom/flutter_swiper/raw/master/example/res/5.gif)
+![Phone](https://github.com/feicien/flutter_swiper_view/raw/master/example/res/5.gif)
 
 ![Example](https://github.com/jzoom/images/raw/master/swiper-example.gif)
 
 [See More](#codes)
 
-## Roadmap
-
->see:[ROADMAP.md](https://github.com/jzoom/flutter_swiper/blob/master/ROADMAP.md)
 
 ## Changelogs
 
->see:[CHANGELOG.md](https://github.com/jzoom/flutter_swiper/blob/master/CHANGELOG.md)
+>see:[CHANGELOG.md](https://github.com/feicien/flutter_swiper_view/blob/master/CHANGELOG.md)
 
 ## Getting Started
 
@@ -94,14 +86,13 @@ We are using this project [transformer_page_view](https://github.com/best-flutte
 
 Add 
 
-```bash
-
-flutter_swiper : ^lastest_version
-
+```
+dependencies:
+  flutter_swiper_view: ^1.1.8
 ```
 to your pubspec.yaml ,and run 
 
-```bash
+```
 flutter packages get 
 ```
 in your project's root directory.
@@ -120,7 +111,7 @@ Edit lib/main.dart like this:
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
 void main() => runApp(new MyApp());
 
@@ -404,7 +395,7 @@ new ConstrainedBox(
 
 You can find all custom options here:
 
->https://github.com/jzoom/flutter_swiper/blob/master/example/lib/src/ExampleCustom.dart
+>https://github.com/feicien/flutter_swiper_view/blob/master/example/lib/src/example_custom.dart
 
 
 

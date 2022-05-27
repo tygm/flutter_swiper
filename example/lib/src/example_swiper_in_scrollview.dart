@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
 class ExampleSwiperInScrollView extends StatefulWidget {
   const ExampleSwiperInScrollView({Key? key}) : super(key: key);

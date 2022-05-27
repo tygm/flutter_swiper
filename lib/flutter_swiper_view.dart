@@ -1,4 +1,4 @@
-library flutter_swiper;
+library flutter_swiper_view;
 
 export 'src/flutter_page_indicator.dart';
 export 'src/index_controller.dart';

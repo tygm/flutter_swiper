@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
 import 'config.dart';
 import 'forms/form_widget.dart';
@@ -189,7 +189,7 @@ class _ExampleCustomState extends State<ExampleCustom> {
                     onPressed: () {
                       final text = numberController.text;
                       setState(() {
-                        _currentIndex = int.parse(text);
+                        _currentIndex = int.tryParse(text) ?? 0;
                       });
                     },
                     child: const Text('Update'),
