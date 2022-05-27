@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class WarmPainter extends BasePainter {
   WarmPainter(PageIndicator widget, double page, int index, Paint paint)
@@ -104,7 +105,8 @@ class ScalePainter extends BasePainter {
     double space = widget.space;
     double size = widget.size;
     double radius = size / 2;
-    for (int i = 0, c = widget.count; i < c; ++i) {
+    int c = widget.count;
+    for (int i = 0; i < c; ++i) {
       if (_shouldSkip(i)) {
         continue;
       }
@@ -123,12 +125,12 @@ class ScalePainter extends BasePainter {
         : radius + ((index + 1) * (size + space));
 
     double progress = page - index;
-    _paint.color = Color.lerp(widget.activeColor, widget.color, progress);
+    _paint.color = Color.lerp(widget.activeColor, widget.color, progress)!;
     //last
     canvas.drawCircle(Offset(radius + (index * (size + space)), radius),
         lerp(radius, radius * widget.scale, progress), _paint);
     //first
-    _paint.color = Color.lerp(widget.color, widget.activeColor, progress);
+    _paint.color = Color.lerp(widget.color, widget.activeColor, progress)!;
     canvas.drawCircle(Offset(secondOffset, radius),
         lerp(radius * widget.scale, radius, progress), _paint);
   }
@@ -154,12 +156,12 @@ class ColorPainter extends BasePainter {
         ? radius
         : radius + ((index + 1) * (size + space));
 
-    _paint.color = Color.lerp(widget.activeColor, widget.color, progress);
+    _paint.color = Color.lerp(widget.activeColor, widget.color, progress)!;
     //left
     canvas.drawCircle(
         Offset(radius + (index * (size + space)), radius), radius, _paint);
     //right
-    _paint.color = Color.lerp(widget.color, widget.activeColor, progress);
+    _paint.color = Color.lerp(widget.color, widget.activeColor, progress)!;
     canvas.drawCircle(Offset(secondOffset, radius), radius, _paint);
   }
 }
@@ -189,7 +191,8 @@ abstract class BasePainter extends CustomPainter {
     double space = widget.space;
     double size = widget.size;
     double radius = size / 2;
-    for (int i = 0, c = widget.count; i < c; ++i) {
+    int c = widget.count;
+    for (int i = 0; i < c; ++i) {
       if (_shouldSkip(i)) {
         continue;
       }
@@ -213,28 +216,23 @@ abstract class BasePainter extends CustomPainter {
 
 class _PageIndicatorState extends State<PageIndicator> {
   int index = 0;
+  double page = 0;
   final Paint _paint = Paint();
 
-  BasePainter _createPainer() {
+  BasePainter _createPainter() {
     switch (widget.layout) {
       case PageIndicatorLayout.NONE:
-        return NonePainter(
-            widget, widget.controller.page ?? 0.0, index, _paint);
+        return NonePainter(widget, page, index, _paint);
       case PageIndicatorLayout.SLIDE:
-        return SlidePainter(
-            widget, widget.controller.page ?? 0.0, index, _paint);
+        return SlidePainter(widget, page, index, _paint);
       case PageIndicatorLayout.WARM:
-        return WarmPainter(
-            widget, widget.controller.page ?? 0.0, index, _paint);
+        return WarmPainter(widget, page, index, _paint);
       case PageIndicatorLayout.COLOR:
-        return ColorPainter(
-            widget, widget.controller.page ?? 0.0, index, _paint);
+        return ColorPainter(widget, page, index, _paint);
       case PageIndicatorLayout.SCALE:
-        return ScalePainter(
-            widget, widget.controller.page ?? 0.0, index, _paint);
+        return ScalePainter(widget, page, index, _paint);
       case PageIndicatorLayout.DROP:
-        return DropPainter(
-            widget, widget.controller.page ?? 0.0, index, _paint);
+        return DropPainter(widget, page, index, _paint);
       default:
         throw Exception("Not a valid layout");
     }
@@ -246,7 +244,7 @@ class _PageIndicatorState extends State<PageIndicator> {
       width: widget.count * widget.size + (widget.count - 1) * widget.space,
       height: widget.size,
       child: CustomPaint(
-        painter: _createPainer(),
+        painter: _createPainter(),
       ),
     );
 
@@ -262,8 +260,16 @@ class _PageIndicatorState extends State<PageIndicator> {
     );
   }
 
+  void _setInitialPage() {
+    // use the initial page index but cut off
+    // the offset specified when looping (kMiddleValue)
+    index = widget.controller.initialPage % kMiddleValue;
+    page = index.toDouble();
+  }
+
   void _onController() {
-    double page = widget.controller.page ?? 0.0;
+    if (!widget.controller.hasClients) return;
+    page = widget.controller.page ?? 0.0;
     index = page.floor();
 
     setState(() {});
@@ -271,17 +277,18 @@ class _PageIndicatorState extends State<PageIndicator> {
 
   @override
   void initState() {
-    widget.controller.addListener(_onController);
     super.initState();
+    widget.controller.addListener(_onController);
+    _setInitialPage();
   }
 
   @override
   void didUpdateWidget(PageIndicator oldWidget) {
+    super.didUpdateWidget(oldWidget);
     if (widget.controller != oldWidget.controller) {
       oldWidget.controller.removeListener(_onController);
       widget.controller.addListener(_onController);
     }
-    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -317,7 +324,7 @@ class PageIndicator extends StatefulWidget {
   final Color color;
 
   /// layout of the dots,default is [PageIndicatorLayout.SLIDE]
-  final PageIndicatorLayout layout;
+  final PageIndicatorLayout? layout;
 
   // Only valid when layout==PageIndicatorLayout.scale
   final double scale;
@@ -329,21 +336,19 @@ class PageIndicator extends StatefulWidget {
 
   final double activeSize;
 
-  const PageIndicator(
-      {Key key,
-        this.size = 20.0,
-        this.space = 5.0,
-        @required this.count,
-        this.activeSize = 20.0,
-        @required this.controller,
-        this.color = Colors.white30,
-        this.layout = PageIndicatorLayout.SLIDE,
-        this.activeColor = Colors.white,
-        this.scale = 0.6,
-        this.dropHeight = 20.0})
-      : assert(count != null),
-        assert(controller != null),
-        super(key: key);
+  const PageIndicator({
+    Key? key,
+    this.size = 20.0,
+    this.space = 5.0,
+    required this.count,
+    this.activeSize = 20.0,
+    required this.controller,
+    this.color = Colors.white30,
+    this.layout = PageIndicatorLayout.SLIDE,
+    this.activeColor = Colors.white,
+    this.scale = 0.6,
+    this.dropHeight = 20.0,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

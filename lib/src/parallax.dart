@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import 'transformer_page_view.dart';
 
-typedef PaintCallback = void Function(Canvas canvas, Size siz);
+typedef PaintCallback = void Function(Canvas canvas, Size size);
 
 class ColorPainter extends CustomPainter {
   final Paint _paint;
@@ -17,19 +17,19 @@ class ColorPainter extends CustomPainter {
     _paint.color = colors[index];
     canvas.drawRect(
         Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
-    if (info.done) {
+    if (info.done!) {
       return;
     }
     int alpha;
     int color;
     double opacity;
-    double position = info.position;
-    if (info.forward) {
+    double? position = info.position;
+    if (info.forward!) {
       if (index < colors.length - 1) {
         color = colors[index + 1].value & 0x00ffffff;
-        opacity = (position <= 0
-            ? (-position / info.viewportFraction)
-            : 1 - position / info.viewportFraction);
+        opacity = (position! <= 0
+            ? (-position / info.viewportFraction!)
+            : 1 - position / info.viewportFraction!);
         if (opacity > 1) {
           opacity -= 1.0;
         }
@@ -45,9 +45,9 @@ class ColorPainter extends CustomPainter {
     } else {
       if (index > 0) {
         color = colors[index - 1].value & 0x00ffffff;
-        opacity = (position > 0
-            ? position / info.viewportFraction
-            : (1 + position / info.viewportFraction));
+        opacity = (position! > 0
+            ? position / info.viewportFraction!
+            : (1 + position / info.viewportFraction!));
         if (opacity > 1) {
           opacity -= 1.0;
         }
@@ -88,10 +88,11 @@ class ParallaxColor extends StatefulWidget {
 
   final TransformInfo info;
 
-  const ParallaxColor({Key key,
-    @required this.colors,
-    @required this.info,
-    @required this.child,
+  const ParallaxColor({
+    Key? key,
+    required this.colors,
+    required this.info,
+    required this.child,
   }) : super(key: key);
 
   @override
@@ -106,13 +107,13 @@ class ParallaxContainer extends StatelessWidget {
   final double translationFactor;
   final double opacityFactor;
 
-  const ParallaxContainer(
-      {Key key, @required this.child,
-        @required this.position,
-        this.translationFactor = 100.0,
-        this.opacityFactor = 1.0})
-      : assert(position != null),
-        assert(translationFactor != null), super(key: key);
+  const ParallaxContainer({
+    Key? key,
+    required this.child,
+    required this.position,
+    this.translationFactor = 100.0,
+    this.opacityFactor = 1.0,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -130,14 +131,20 @@ class ParallaxImage extends StatelessWidget {
   final Image image;
   final double imageFactor;
 
-  ParallaxImage.asset(String name, {Key key, double position, this.imageFactor = 0.3})
-      : assert(imageFactor != null),
-        image = Image.asset(name,
-            fit: BoxFit.cover,
-            alignment: FractionalOffset(
-              0.5 + position * imageFactor,
-              0.5,
-            )), super(key: key);
+  ParallaxImage.asset(
+    String name, {
+    Key? key,
+    required double position,
+    this.imageFactor = 0.3,
+  })  : image = Image.asset(
+          name,
+          fit: BoxFit.cover,
+          alignment: FractionalOffset(
+            0.5 + position * imageFactor,
+            0.5,
+          ),
+        ),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
