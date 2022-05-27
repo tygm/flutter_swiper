@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:async';
 
-import 'package:transformer_page_view/transformer_page_view.dart';
+import 'transformer_page_view.dart';
 
 part 'custom_layout.dart';
 

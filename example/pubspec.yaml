@@ -15,7 +15,6 @@ dependencies:
   flutter_swiper:
     path: ../
 
-  percent_indicator:
 
 dev_dependencies:
   flutter_test:
