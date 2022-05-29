@@ -128,8 +128,8 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                 SizedBox(
                   height: 100.0,
                   child: Swiper(
-                    scale:0.8,
-                    fade:0.8,
+                    scale: 0.8,
+                    fade: 0.8,
                     itemBuilder: (c, i) {
                       return Container(
                         color: Colors.grey,
@@ -143,8 +143,8 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                 SizedBox(
                   height: 100.0,
                   child: Swiper(
-                      scale:0.8,
-                      fade:0.8,
+                      scale: 0.8,
+                      fade: 0.8,
                       itemBuilder: (c, i) {
                         return Container(
                           color: Colors.grey,
@@ -158,8 +158,8 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                 SizedBox(
                   height: 100.0,
                   child: Swiper(
-                      scale:0.8,
-                      fade:0.8,
+                      scale: 0.8,
+                      fade: 0.8,
                       itemBuilder: (c, i) {
                         return Container(
                           color: Colors.grey,
@@ -174,8 +174,8 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                   height: 100.0,
                   child: Swiper(
                       outer: true,
-                      scale:0.8,
-                      fade:0.8,
+                      scale: 0.8,
+                      fade: 0.8,
                       itemBuilder: (c, i) {
                         return Container(
                           color: Colors.grey,
@@ -200,8 +200,8 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                   height: 100.0,
                   child: Swiper(
                       outer: true,
-                      scale:0.8,
-                      fade:0.8,
+                      scale: 0.8,
+                      fade: 0.8,
                       itemBuilder: (c, i) {
                         return Card(
                           elevation: 2.0,
@@ -234,8 +234,8 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                           ),
                         );
                       },
-                      pagination:
-                          const SwiperPagination(alignment: Alignment.topCenter),
+                      pagination: const SwiperPagination(
+                          alignment: Alignment.topCenter),
                       itemCount: 10),
                 ),
                 SizedBox(
@@ -245,15 +245,15 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                       itemBuilder: (c, i) {
                         return _buildDynamicCard();
                       },
-                      pagination:
-                          const SwiperPagination(alignment: Alignment.topCenter),
+                      pagination: const SwiperPagination(
+                          alignment: Alignment.topCenter),
                       itemCount: 10),
                 ),
                 SizedBox(
                   height: 100.0,
                   child: Swiper(
                       outer: true,
-                      fade:0.8,
+                      fade: 0.8,
                       viewportFraction: 0.8,
                       scale: 0.8,
                       itemBuilder: (c, i) {
@@ -262,8 +262,8 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                           child: Text("$i"),
                         );
                       },
-                      pagination:
-                          const SwiperPagination(alignment: Alignment.topCenter),
+                      pagination: const SwiperPagination(
+                          alignment: Alignment.topCenter),
                       itemCount: 10),
                 ),
               ],

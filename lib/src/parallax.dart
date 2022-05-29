@@ -15,8 +15,7 @@ class ColorPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     int index = info.fromIndex;
     _paint.color = colors[index];
-    canvas.drawRect(
-        Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
+    canvas.drawRect(Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
     if (info.done!) {
       return;
     }

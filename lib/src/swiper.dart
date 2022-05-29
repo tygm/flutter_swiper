@@ -11,7 +11,8 @@ part 'custom_layout.dart';
 
 typedef SwiperOnTap = void Function(int index);
 
-typedef SwiperDataBuilder<T> = Widget Function(BuildContext context, T data, int index);
+typedef SwiperDataBuilder<T> = Widget Function(
+    BuildContext context, T data, int index);
 
 /// default auto play delay
 const int kDefaultAutoplayDelayMs = 3000;

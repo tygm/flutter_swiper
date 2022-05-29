@@ -1,6 +1,5 @@
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
-
 class SwipeIndexControllerEvent extends IndexControllerEventBase {
   SwipeIndexControllerEvent({
     required this.pos,

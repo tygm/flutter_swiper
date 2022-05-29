@@ -79,7 +79,8 @@ abstract class PageTransformer {
   Widget transform(Widget child, TransformInfo info);
 }
 
-typedef PageTransformerBuilderCallback = Widget Function(Widget child, TransformInfo info);
+typedef PageTransformerBuilderCallback = Widget Function(
+    Widget child, TransformInfo info);
 
 class PageTransformerBuilder extends PageTransformer {
   final PageTransformerBuilderCallback builder;
@@ -106,10 +107,11 @@ class TransformerPageController extends PageController {
     this.itemCount = 0,
     this.reverse = false,
   }) : super(
-      initialPage: TransformerPageController._getRealIndexFromRenderIndex(
-          initialPage, loop, itemCount, reverse),
-      keepPage: keepPage,
-      viewportFraction: viewportFraction);
+          initialPage: TransformerPageController._getRealIndexFromRenderIndex(
+              initialPage, loop, itemCount, reverse),
+          keepPage: keepPage,
+          viewportFraction: viewportFraction,
+        );
 
   int getRenderIndexFromRealIndex(num index) {
     return _getRenderIndexFromRealIndex(index, loop, itemCount, reverse);
@@ -269,8 +271,8 @@ class TransformerPageView extends StatefulWidget {
     this.pageController,
     required this.itemCount,
   })  : assert(itemCount == 0 || itemBuilder != null || transformer != null),
-        duration =
-            duration ?? const Duration(milliseconds: kDefaultTransactionDuration),
+        duration = duration ??
+            const Duration(milliseconds: kDefaultTransactionDuration),
         super(key: key);
 
   factory TransformerPageView.children({
@@ -370,7 +372,8 @@ class _TransformerPageViewState extends State<TransformerPageView> {
         animation: _pageController,
         builder: (c, w) {
           int renderIndex = _pageController.getRenderIndexFromRealIndex(index);
-          Widget child = widget.itemBuilder?.call(context, renderIndex) ?? const SizedBox.shrink();
+          Widget child = widget.itemBuilder?.call(context, renderIndex) ??
+              const SizedBox.shrink();
           if (_size == null) {
             return child;
           }
@@ -416,7 +419,7 @@ class _TransformerPageViewState extends State<TransformerPageView> {
   @override
   Widget build(BuildContext context) {
     IndexedWidgetBuilder builder =
-    _transformer == null ? _buildItemNormal : _buildItem;
+        _transformer == null ? _buildItemNormal : _buildItem;
     Widget child = PageView.builder(
       allowImplicitScrolling: widget.allowImplicitScrolling,
       itemBuilder: builder,
@@ -451,7 +454,8 @@ class _TransformerPageViewState extends State<TransformerPageView> {
 
   void _onIndexChanged(int index) {
     _activeIndex = index;
-    widget.onPageChanged?.call(_pageController.getRenderIndexFromRealIndex(index));
+    widget.onPageChanged
+        ?.call(_pageController.getRenderIndexFromRealIndex(index));
   }
 
   void _onGetSize(Duration _) {

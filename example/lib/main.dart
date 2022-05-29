@@ -6,7 +6,6 @@ import 'src/example_custom.dart';
 import 'src/config.dart';
 import 'src/example_swiper_in_scrollview.dart';
 
-
 void main() => runApp(const MyApp());
 
 class MyScrollBehavior extends MaterialScrollBehavior {
@@ -36,8 +35,7 @@ class MyApp extends StatelessWidget {
         '/example04': (context) => const ExampleCustomPagination(),
         '/example05': (context) => const ExamplePhone(),
         '/example06': (context) => const ScaffoldWidget(
-            title: "ScrollView",
-            child: ExampleSwiperInScrollView()),
+            title: "ScrollView", child: ExampleSwiperInScrollView()),
         '/example07': (context) => const ScaffoldWidget(
               title: "Custom All",
               child: ExampleCustom(),
@@ -131,7 +129,6 @@ class ExampleHorizontal extends StatelessWidget {
               fit: BoxFit.fill,
             );
           },
-
           indicatorLayout: PageIndicatorLayout.COLOR,
           autoplay: true,
           itemCount: images.length,
@@ -211,7 +208,6 @@ class ExampleFraction extends StatelessWidget {
   }
 }
 
-
 class ExampleRect extends StatelessWidget {
   const ExampleRect({Key? key}) : super(key: key);
 
@@ -224,34 +220,37 @@ class ExampleRect extends StatelessWidget {
         body: Column(
           children: <Widget>[
             Expanded(
-                child: Swiper(
-                  itemBuilder: (context, index) {
-                    return Image.asset(
-                      images[index],
-                      fit: BoxFit.fill,
-                    );
-                  },
-                  autoplay: true,
-                  itemCount: images.length,
-                  pagination:
-                  const SwiperPagination(builder: SwiperPagination.rect),
-                  control: const SwiperControl(),
-                )),
+              child: Swiper(
+                itemBuilder: (context, index) {
+                  return Image.asset(
+                    images[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+                autoplay: true,
+                itemCount: images.length,
+                pagination:
+                    const SwiperPagination(builder: SwiperPagination.rect),
+                control: const SwiperControl(),
+              ),
+            ),
             Expanded(
-                child: Swiper(
-                  itemBuilder: (context, index) {
-                    return Image.asset(
-                      images[index],
-                      fit: BoxFit.fill,
-                    );
-                  },
-                  autoplay: true,
-                  itemCount: images.length,
-                  scrollDirection: Axis.vertical,
-                  pagination: const SwiperPagination(
-                      alignment: Alignment.centerRight,
-                      builder: SwiperPagination.rect),
-                ))
+              child: Swiper(
+                itemBuilder: (context, index) {
+                  return Image.asset(
+                    images[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+                autoplay: true,
+                itemCount: images.length,
+                scrollDirection: Axis.vertical,
+                pagination: const SwiperPagination(
+                  alignment: Alignment.centerRight,
+                  builder: SwiperPagination.rect,
+                ),
+              ),
+            )
           ],
         ));
   }

@@ -16,7 +16,8 @@ abstract class _CustomLayoutStateBase<T extends _SubSwiper> extends State<T>
     _currentIndex = widget.index ?? 0;
     if (widget.itemWidth == null) {
       throw Exception(
-        '==============\n\nwidget.itemWidth must not be null when use stack layout.\n========\n',);
+        '==============\n\nwidget.itemWidth must not be null when use stack layout.\n========\n',
+      );
     }
 
     _createAnimationController();
@@ -162,7 +163,7 @@ abstract class _CustomLayoutStateBase<T extends _SubSwiper> extends State<T>
           _animationController.value = 0.5;
         } catch (e) {
           debugPrint(
-            'error setting _animationController.value ${e.toString()}');
+              'error setting _animationController.value ${e.toString()}');
         }
 
         _currentIndex = nextIndex;
