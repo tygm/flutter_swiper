@@ -95,9 +95,9 @@ class RectSwiperPaginationBuilder extends SwiperPlugin {
     this.activeColor,
     this.color,
     this.key,
-    this.size = const Size(10.0, 2.0),
-    this.activeSize = const Size(10.0, 2.0),
-    this.space = 3.0,
+    this.size = const Size(10.0, 3.0),
+    this.activeSize = const Size(10.0, 3.0),
+    this.space = 2.0,
   });
 
   @override
@@ -122,14 +122,14 @@ class RectSwiperPaginationBuilder extends SwiperPlugin {
     for (int i = 0; i < itemCount; ++i) {
       bool active = i == activeIndex;
       Size size = active ? activeSize : this.size;
-      list.add(ClipRRect(
-        borderRadius: BorderRadius.circular(1.5),
-        child: Container(
-          width: size.width,
-          height: size.height,
+      list.add(Container(
+        width: size.width,
+        height: size.height,
+        key: Key("pagination_$i"),
+        margin: EdgeInsets.all(space),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(1.5),
           color: active ? activeColor : color,
-          key: Key("pagination_$i"),
-          margin: EdgeInsets.all(space),
         ),
       ));
     }
