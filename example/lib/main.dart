@@ -96,11 +96,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ["Horizontal", "Scroll Horizontal", "/example01"],
           ["Vertical", "Scroll Vertical", "/example02"],
           ["Fraction", "Fraction style", "/example03"],
+          ["Rect", "Rect style", "/example08"],
           ["Custom Pagination", "Custom Pagination", "/example04"],
           ["Phone", "Phone view", "/example05"],
           ["ScrollView ", "In a ScrollView", "/example06"],
           ["Custom", "Custom all properties", "/example07"],
-          ["Rect", "Rect style", "/example08"]
         ]),
       ),
     );

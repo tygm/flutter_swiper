@@ -25,12 +25,17 @@ class FractionPaginationBuilder extends SwiperPlugin {
   });
 
   @override
-  Widget build(BuildContext context, SwiperPluginConfig? config) {
+  Widget build(BuildContext context, SwiperPluginConfig config) {
+    int itemCount = config.itemCount;
+    if (itemCount <= 1) {
+      return Container();
+    }
+
     ThemeData themeData = Theme.of(context);
     Color activeColor = this.activeColor ?? themeData.primaryColor;
     Color color = this.color ?? themeData.scaffoldBackgroundColor;
 
-    if (Axis.vertical == config!.scrollDirection) {
+    if (Axis.vertical == config.scrollDirection) {
       return Column(
         key: key,
         mainAxisSize: MainAxisSize.min,
@@ -44,7 +49,7 @@ class FractionPaginationBuilder extends SwiperPlugin {
             style: TextStyle(color: color, fontSize: fontSize),
           ),
           Text(
-            "${config.itemCount}",
+            "$itemCount",
             style: TextStyle(color: color, fontSize: fontSize),
           )
         ],
@@ -59,7 +64,7 @@ class FractionPaginationBuilder extends SwiperPlugin {
             style: TextStyle(color: activeColor, fontSize: activeFontSize),
           ),
           Text(
-            " / ${config.itemCount}",
+            " / $itemCount",
             style: TextStyle(color: color, fontSize: fontSize),
           )
         ],
@@ -97,13 +102,17 @@ class RectSwiperPaginationBuilder extends SwiperPlugin {
 
   @override
   Widget build(BuildContext context, SwiperPluginConfig config) {
+    int itemCount = config.itemCount;
+    if (itemCount <= 1) {
+      return Container();
+    }
+
     ThemeData themeData = Theme.of(context);
     Color activeColor = this.activeColor ?? themeData.primaryColor;
     Color color = this.color ?? themeData.scaffoldBackgroundColor;
 
     List<Widget> list = [];
 
-    int itemCount = config.itemCount;
     int activeIndex = config.activeIndex;
     if (itemCount > 20) {
       debugPrint(
@@ -170,6 +179,12 @@ class DotSwiperPaginationBuilder extends SwiperPlugin {
 
   @override
   Widget build(BuildContext context, SwiperPluginConfig config) {
+
+    int itemCount = config.itemCount;
+    if (itemCount <= 1) {
+      return Container();
+    }
+
     if (config.itemCount > 20) {
       debugPrint(
           "The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation");
@@ -198,7 +213,6 @@ class DotSwiperPaginationBuilder extends SwiperPlugin {
 
     List<Widget> list = [];
 
-    int itemCount = config.itemCount;
     int? activeIndex = config.activeIndex;
 
     for (int i = 0; i < itemCount; ++i) {
@@ -253,6 +267,7 @@ class SwiperPagination extends SwiperPlugin {
   /// fraction style pagination
   static const SwiperPlugin fraction = FractionPaginationBuilder();
 
+  /// round rect style pagination
   static const SwiperPlugin rect = RectSwiperPaginationBuilder();
 
   /// Alignment.bottomCenter by default when scrollDirection== Axis.horizontal

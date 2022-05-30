@@ -129,7 +129,7 @@ class Swiper extends StatefulWidget {
     ///
     this.transformer,
     required this.itemCount,
-    this.autoplay = false,
+    bool autoplay = false,
     this.layout = SwiperLayout.DEFAULT,
     this.autoplayDelay = kDefaultAutoplayDelayMs,
     this.autoplayDisableOnInteraction = true,
@@ -138,7 +138,7 @@ class Swiper extends StatefulWidget {
     this.index,
     this.onTap,
     this.control,
-    this.loop = true,
+    bool loop = true,
     this.curve = Curves.ease,
     this.scrollDirection = Axis.horizontal,
     this.axisDirection = AxisDirection.left,
@@ -172,6 +172,8 @@ class Swiper extends StatefulWidget {
                             indicatorLayout == PageIndicatorLayout.NONE)) ||
                     (loop && layout != SwiperLayout.DEFAULT)),
             "Only support `PageIndicatorLayout.SCALE` and `PageIndicatorLayout.COLOR`when layout==SwiperLayout.DEFAULT in loop mode"),
+        autoplay = (autoplay && itemCount > 1),
+        loop = (loop && itemCount > 1),
         super(key: key);
 
   factory Swiper.children({
